@@ -2,7 +2,7 @@ plugins {
     id ("org.jetbrains.kotlin.jvm") version "1.4.32"
     `maven-publish`
     `java-library`
-    signing
+//    signing
 }
 
 repositories {
@@ -65,9 +65,9 @@ publishing {
     }
 }
 
-signing {
-    sign(publishing.publications["maven"])
-}
+//signing {
+//    sign(publishing.publications["maven"])
+//}
 
 tasks.javadoc {
     if (JavaVersion.current().isJava9Compatible) {
