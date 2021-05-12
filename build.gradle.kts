@@ -1,6 +1,7 @@
 plugins {
     id ("org.jetbrains.kotlin.jvm") version "1.4.32"
     `maven-publish`
+    `java-library`
     signing
 }
 
@@ -15,6 +16,11 @@ dependencies {
 
 group = "org.xuchang"
 version = "1.0.0"
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
 publishing {
     publications {
@@ -61,4 +67,10 @@ publishing {
 
 signing {
     sign(publishing.publications["maven"])
+}
+
+tasks.javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+    }
 }
