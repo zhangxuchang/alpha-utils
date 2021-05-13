@@ -62,6 +62,10 @@ publishing {
             name = "alphaUtils"
             url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
             //url = uri(layout.buildDirectory.dir("repo"))
+            credentials {
+                username = "zhangxuchang"
+                password = "***"
+            }
         }
     }
 }
