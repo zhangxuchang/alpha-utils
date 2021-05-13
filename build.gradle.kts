@@ -2,7 +2,7 @@ plugins {
     id ("org.jetbrains.kotlin.jvm") version "1.4.32"
     `maven-publish`
     `java-library`
-//    signing
+    signing
 }
 
 repositories {
@@ -14,8 +14,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
 }
 
-group = "org.xuchang"
-version = "1.0.0"
+group = "io.github.zhangxuchang"
+version = "1.0.3"
 
 java {
     withJavadocJar()
@@ -24,8 +24,8 @@ java {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
-            artifactId = "utils"
+        create<MavenPublication>("alphaUtils") {
+            artifactId = "alphaUtils"
             from(components["java"])
             pom {
                 name.set("Alpha Utils Library")
@@ -43,14 +43,14 @@ publishing {
                 }
                 developers {
                     developer {
-                        id.set("xuchangzhang")
+                        id.set("zhangxuchang")
                         name.set("ZHANG XUCHANG")
                         email.set("zhangxuchang@oasgames.com")
                     }
                 }
                 scm {
                     connection.set("scm:git:git@github.com:zhangxuchang/alpha-utils.git")
-                    developerConnection.set("scm:git:ssh://example.com/my-library.git")
+                    developerConnection.set("scm:git:git@github.com:zhangxuchang/alpha-utils.git")
                     url.set("https://github.com/zhangxuchang/alpha-utils")
                 }
             }
@@ -60,14 +60,15 @@ publishing {
     repositories {
         maven {
             name = "alphaUtils"
-            url = uri(layout.buildDirectory.dir("repo"))
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            //url = uri(layout.buildDirectory.dir("repo"))
         }
     }
 }
 
-//signing {
-//    sign(publishing.publications["maven"])
-//}
+signing {
+    sign(publishing.publications["alphaUtils"])
+}
 
 tasks.javadoc {
     if (JavaVersion.current().isJava9Compatible) {
